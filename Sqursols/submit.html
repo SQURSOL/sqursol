@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Fill Form carefully.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color:rgb(243, 220, 245);
+            /*background-image:url('im.jpg');*/
+            background-repeat: no-repeat;
+            background-size:2000px 2020px;
+        }
+        /* Style all input fields */
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgb(136, 134, 243);
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            
+        }
+
+        input:focus {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgb(80, 78, 165);
+            border-radius: 10px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        
+        }
+            /* Style the submit button */
+            input[type=submit] {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+        /* Style the container for inputs */
+        .container {
+            /*background-image: url('cr.jpg');*/ background-color:rgb(235, 238, 238);
+            background-repeat: no-repeat;
+            background-size:1520px 460px;
+            /*padding: 20px;*/
+        }
+
+        /* The message box is shown when the user clicks on the password field */
+        #message {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+            #message p {
+                padding: 10px 35px;
+                font-size: 18px;
+            }
+
+        /* Add a green text color and a checkmark when the requirements are right */
+        .valid {
+            color: green;
+        }
+
+            .valid:before {
+                position: relative;
+                left: -35px;
+                content: "?";
+            }
+
+        /* Add a red text color and an "x" when the requirements are wrong */
+        .invalid {
+            color: red;
+        }
+
+            .invalid:before {
+                position: relative;
+                left: -35px;
+                content: "?";
+            }
+        .container:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+        button {
+            display: inline-block;
+            padding: 10px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: rgb(15, 24, 36);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+            button:hover {
+                background-color:forestgreen;
+            }
+
+            button:active {
+                background-color:#76117e;
+                box-shadow: 0 5px #666;
+                transform: translateY(3px);
+            }
+            /*.reset{
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+            }
+            .reset:hover {
+                background-color:forestgreen;
+            }
+
+            .reset:active {
+                background-color:#76117e;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+            .login{
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+            }
+            .login:hover {
+                background-color:forestgreen;
+            }
+
+            .login:active {
+                background-color:#76117e;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }*/
+            
+
+    </style>
+</head>
+<body>
+        
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBi3z85n7mw3xbwmlHBDBBVuA3FqiaC2rg",
+    authDomain: "sqursol.firebaseapp.com",
+    databaseURL: "https://sqursol.firebaseio.com",
+    projectId: "sqursol",
+    storageBucket: "sqursol.appspot.com",
+    messagingSenderId: "254946775826"
+  };
+  firebase.initializeApp(config);
+</script>
+    
+    <script>
+        function writeOnFirebase()
+        {
+            var database = firebase.database();
+
+            var fname = document.getElementById("fname").value;
+            var lname = document.getElementById("lname").value;
+            var clg = document.getElementById("id").value;
+            var email = document.getElementById("email").value;
+            var pass = document.getElementById("psw").value;
+            var uss = fname+lname;
+
+            window.alert(fname);
+
+            var postData = {
+                Username : uss,
+                Firstname : fname,
+                Lastname : lname,
+                CollegeID : clg,
+                Email : email,
+                Password : psw 
+            }
+
+            var newPostKey = firebase.database().ref().child('users').push().key;
+
+            var updates = {};
+            // updates['/posts/' + newPostKey] = postData;
+            updates['/users/' + fname] = postData;
+
+            return firebase.database().ref().update(updates);
+        }
+    </script>
+    
+    <p style="font-size:36px">
+                <img src="C:\Users\rahul choudhary\Desktop\2018KUEC2011 IWT Lab\pr.jpg" alt="Smiley face" style="float:left;width:80px;height:80px;">
+                <b>IIIT KOTA STUDENT'S PAGE.</b>
+            </p>
+            <center>
+                <p style="color:#000099;font-size:xx-large;align-self:auto;"><b> <legend> STUDENT Registration: </legend> </b></p>
+            </center>
+            
+    <!-- <fieldset> -->
+        <!-- <legend align="center">Registration Form:</legend> -->
+
+
+        <!-- <div class="container"> -->
+            <!-- <form action="iiithome.html"> -->
+            <!-- <div class="container"> -->
+
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="fname" name="First Name" required>
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lname" name="Last Name" required>
+                    <label for="Collage ID">Collage ID</label>
+                    <input type="" id="id" name="Collage ID" required>
+                    <label for="gmail">G-mail</label>
+                    <input type="email" id="email" name="G-mail" required>
+                    <label for="psw">Password</label>
+                    <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    
+                    <!-- <input type="submit" id="submit" class="submit" value="Submit">
+                    <input type="reset" id="reset" class="reset" value="Reset">
+                    <a href="login.html"><input type="login" id="login" class="login" value="Login"></a> -->
+                    <center><button value="Submit" onclick="writeOnFirebase()">SUBMIT</button></center>
+                <!-- </div> -->
+
+
+            <!-- </form> -->
+        <!-- </div> -->
+    <!-- </fieldset> -->
+    <div id="message">
+        <h3>Password must contain the following:</h3>
+        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>number</b></p>
+        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+    </div>
+
+    <script type='text/javascript'>
+        function myFunction() {
+            var x, text = "", i, j;
+            x = document
+            if (isNaN(x)) {
+                text = "Input not valid";
+            }
+            else {
+                text = "Input OK";
+                for (i = 1; i <= x; i++) {
+                    for (j = 1; j <= i;)
+                }
+            }
+        }
+
+
+        var myInput = document.getElementById("psw");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var length = document.getElementById("length");
+
+        // When the user clicks on the password field, show the message box
+        myInput.onfocus = function () {
+            document.getElementById("message").style.display = "block";
+        }
+
+        // When the user clicks outside of the password field, hide the message box
+        myInput.onblur = function () {
+            document.getElementById("message").style.display = "none";
+        }
+
+        // When the user starts to type something inside the password field
+        myInput.onkeyup = function () {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if (myInput.value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInput.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInput.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // Validate length
+            if (myInput.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+        }
+
+    </script>
+
+</body>
+</html>
